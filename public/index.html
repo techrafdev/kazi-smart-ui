@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+
+    <!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="<%= BASE_URL %>assets/plugins/bootstrap/css/bootstrap.min.css">
+	
+	<!-- Bootstrap Select Option css -->
+	<link rel="stylesheet" href="<%= BASE_URL %>assets/plugins/bootstrap/css/bootstrap-select.min.css">
+	
+    <!-- Icons -->
+  <link href="<%= BASE_URL %>assets/plugins/icons/css/icons.css" rel="stylesheet">
+    
+    <!-- Animate -->
+  <link href="<%= BASE_URL %>assets/plugins/animate/animate.css" rel="stylesheet">
+    
+    <!-- Bootsnav -->
+  <link href="<%= BASE_URL %>assets/plugins/bootstrap/css/bootsnav.css" rel="stylesheet">
+	
+	<!-- Nice Select Option css -->
+	<link rel="stylesheet" href="<%= BASE_URL %>assets/plugins/nice-select/css/nice-select.css">
+	
+	<!-- Aos Css -->
+  <link href="<%= BASE_URL %>assets/plugins/aos-master/aos.css" rel="stylesheet">
+
+	<!-- Slick Slider -->
+  <link href="<%= BASE_URL %>assets/plugins/slick-slider/slick.css" rel="stylesheet">	
+    
+    <!-- Custom style -->
+  <link href="<%= BASE_URL %>assets/css/style.css" rel="stylesheet">
+	<link href="assets/css/responsiveness.css" rel="stylesheet">
+	
+	<!-- Custom Color -->
+  <link href="<%= BASE_URL %>assets/css/skin/default.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
+
+
+  </head>
+  <body class="blue-skin">
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <!-- Color Switcher -->
+		<div class="style-switcher">
+			<h2 class="css-trigger"><a href="#"><i class="ti-settings"></i></a></h2>
+			<div>
+				<ul id="themecolors" class="m-t-20">
+					<li><a href="javascript:void(0)" data-skin="red-skin" class="red-theme">1</a></li>
+					<li><a href="javascript:void(0)" data-skin="green-skin" class="green-theme">2</a></li>
+					<li><a href="javascript:void(0)" data-skin="blue-skin" class="blue-theme">3</a></li>
+					<li><a href="javascript:void(0)" data-skin="yellow-skin" class="yellow-theme">4</a></li>
+					<li><a href="javascript:void(0)" data-skin="purple-skin" class="purple-theme">5</a></li>
+					<li><a href="javascript:void(0)" data-skin="cyan-skin" class="cyan-theme">6</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+    <!-- =================== START JAVASCRIPT ================== -->
+		<!-- Jquery js-->
+		<script src="<%= BASE_URL %>assets/js/jquery.min.js"></script>
+		
+		<!-- Bootstrap js-->
+		<script src="<%= BASE_URL %>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		
+		<!-- Bootsnav js-->
+		<script src="<%= BASE_URL %>assets/plugins/bootstrap/js/bootsnav.js"></script>
+		<script src="<%= BASE_URL %>assets/js/viewportchecker.js"></script>
+		
+		<!-- Slick Slider js-->
+		<script src="<%= BASE_URL %>assets/plugins/slick-slider/slick.js"></script>
+		
+		<!-- wysihtml5 editor js -->
+		<script src="<%= BASE_URL %>assets/plugins/bootstrap/js/wysihtml5-0.3.0.js"></script>
+		<script src="<%= BASE_URL %>assets/plugins/bootstrap/js/bootstrap-wysihtml5.js"></script>
+		
+		<!-- Aos Js -->
+		<script src="<%= BASE_URL %>assets/plugins/aos-master/aos.js"></script>
+		
+		<!-- Nice Select -->
+		<script src="<%= BASE_URL %>assets/plugins/nice-select/js/jquery.nice-select.min.js"></script>
+		
+		<!-- Custom Js -->
+		<script src="<%= BASE_URL %>assets/js/custom.js"></script>
+		<script src="<%= BASE_URL %>assets/js/jQuery.style.switcher.js"></script>
+		
+		<script>
+			AOS.init();
+		</script>
+
+
+  </body>
+</html>
