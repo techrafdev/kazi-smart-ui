@@ -57,7 +57,8 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li class="br-right"><a href="javascript:void(0)"  data-toggle="modal" data-target="#signin"><i class="login-icon ti-user"></i>Login</a></li>
-						<li class="sign-up"> <router-link class="btn-signup red-btn" to="/signup"> <span class="ti-briefcase"></span> Sign Up </router-link></li>
+						<!-- <li class="sign-up"><a href="javascript:void(0)"  data-toggle="modal" class="btn-signup red-btn" data-target="#signup-option"><i class="ti-briefcase"></i>Login</a></li> -->
+						<li class="sign-up"> <a class="btn-signup red-btn" data-toggle="modal" data-target="#signup-options" href="javascript:void(0)"> <span class="ti-briefcase"></span> Sign Up </a></li>
 					</ul>
 						
 				</div>
@@ -69,7 +70,27 @@
 </template>
 
 <script>
+import Custombox from "custombox";
 export default {
+	data() {
+		return {
+
+		}
+	},
+	methods: {
+		signup_box() {
+
+			let modal = new Custombox.modal({
+			content: {
+				effect: 'fadein',
+				target: '#signup-option'
+			}
+			});
+
+			modal.open();
+
+		}
+	}
 
 }
 </script>

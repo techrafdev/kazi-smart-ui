@@ -13,22 +13,19 @@
 					<form>
 						<fieldset class="home-form-1">
 						
-							<div class="col-md-4 col-sm-4 padd-0">
+							<!-- <div class="col-md-4 col-sm-4 padd-0">
 								<input type="text" class="form-control br-1" placeholder="Skills, Designation, Companies" />
-							</div>
+							</div> -->
 								
 							<div class="col-md-3 col-sm-3 padd-0">
-								<select class="wide form-control br-1">
-									<option data-display="Location">All Country</option>
-									<option value="1">Allahabad</option>
-									<option value="2">India</option>
-									<option value="3" disabled>Australia</option>
-									<option value="4">United State</option>
+								<select id="service" class="wide form-control br-1">
+									<!-- <option data-display="Location">All Country</option> -->
+									<option v-for="service in services" :key="service.id" value="service.id" v-text="service.name"></option>
 								</select>
 							</div>
 								
 							<div class="col-md-3 col-sm-3 padd-0">
-								<select class="wide form-control">
+								<select id="county" class="wide form-control">
 									<option data-display="Category">Show All</option>
 									<option value="1">Web Design</option>
 									<option value="2">Accountant</option>
@@ -38,7 +35,7 @@
 							</div>
 								
 							<div class="col-md-2 col-sm-2 padd-0 m-clear">
-								<button type="submit" class="btn theme-btn cl-white seub-btn">FIND JOB</button>
+								<button type="button" @click="submit()" class="btn theme-btn cl-white seub-btn">FIND JOB</button>
 							</div>
 								
 						</fieldset>
@@ -53,8 +50,8 @@
 									<i class="fa fa-check"></i>
 								</div>
 								<div class="cmp-detail">							
-									<h3>674.058</h3>
-									<span>Active Workers</span>
+									<h3 v-text="total_active_service_providers"></h3>
+									<span>Active Service Providers</span>
 								</div>
 							</div>
 						</div>
@@ -66,8 +63,8 @@
 									<i class="fa fa-check"></i>
 								</div>
 								<div class="cmp-detail">							
-									<h3>74.587</h3>
-									<span>Companies</span>
+									<h3 v-text="total_clients"></h3>
+									<span>Clients</span>
 								</div>
 							</div>
 						</div>
@@ -94,11 +91,53 @@
 </template>
 
 <script>
+
+import $ from "jquery";
+import axios from "axios";
+
 export default {
     name: "banner",
-    data() {},
-    components: {},
-    methods: {}
+    data() {
+		return {
+			total_clients: 1001,
+			total_active_service_providers: 2398,
+			services: [
+				// {
+				// 	name: "Mechanic",
+				// 	id: 1
+				// },
+				// {
+				// 	name: "Plumber",
+				// 	id: 2
+				// },
+				// {
+				// 	name: "Electrician",
+				// 	id: 3
+				// }
+			]
+		}
+	},
+	components: {},
+	mounted() {
+		this.get_all_services();
+	},
+    methods: {
+		get_all_services() {
+			axios.get("http://kazi.localhost/service/all")
+			.then((response) => {
+				this.services = response.data.response.data
+				// console.log(response.data.response.data)
+			})
+			.catch(error => console.log(error))
+		},
+		submit() {
+
+			let service = $("#service").val();
+			let county = $("#county").val();
+
+			console.log(service, county);
+		}
+	}
 }
 </script>
 

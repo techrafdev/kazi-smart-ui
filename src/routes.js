@@ -9,7 +9,7 @@ const routes = [
         name: "site"
     },
     {
-        path: "/signup",
+        path: "/signup/:role",
         component: SignUp,
         name: "signup"
     }

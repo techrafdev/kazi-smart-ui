@@ -14,8 +14,9 @@
 
         <Footer />
 
-        <SignIn />
-    
+        <Options />
+
+        <SignIn />  
 
     </div>
     
@@ -30,6 +31,7 @@ import JobsCategory from "../components/site/JobsCategory";
 import NewsLetter from "../components/site/NewsLetter";
 import Footer from "../components/site/Footer";
 import SignIn from "../components/site/SignIn";
+import Options from "../components/site/signup/Options";
 
 export default {
     name: "site",
@@ -45,7 +47,8 @@ export default {
         JobsCategory,
         NewsLetter,
         Footer,
-        SignIn
+        SignIn,
+        Options
     },
     methods: {
 

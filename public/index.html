@@ -17,9 +17,6 @@
     <!-- Icons -->
   <link href="<%= BASE_URL %>assets/plugins/icons/css/icons.css" rel="stylesheet">
     
-    <!-- Animate -->
-  <link href="<%= BASE_URL %>assets/plugins/animate/animate.css" rel="stylesheet">
-    
     <!-- Bootsnav -->
   <link href="<%= BASE_URL %>assets/plugins/bootstrap/css/bootsnav.css" rel="stylesheet">
 	
@@ -34,9 +31,26 @@
     
     <!-- Custom style -->
   <link href="<%= BASE_URL %>assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/responsiveness.css" rel="stylesheet">
+
+<link href="<%= BASE_URL %>assets/css/responsiveness.css" rel="stylesheet">
 	
 	<!-- Custom Color -->
+  <link href="<%= BASE_URL %>assets/css/skin/default.css" rel="stylesheet">
+
+  <!-- Animate -->
+  <link href="<%= BASE_URL %>assets/plugins/animate/animate.css" rel="stylesheet">
+	
+  <!-- Nice Select Option css -->
+  <link rel="<%= BASE_URL %>stylesheet" href="assets/plugins/nice-select/css/nice-select.css">	
+  
+  <!-- Date Dropper -->
+  <link href="<%= BASE_URL %>assets/plugins/date-dropper/datedropper.css" rel="stylesheet">
+  
+  <!-- Custom style -->
+  <link href="<%= BASE_URL %>assets/css/style.css" rel="stylesheet">
+  <link href="<%= BASE_URL %>assets/css/responsiveness.css" rel="stylesheet">
+  
+  <!-- Custom Color -->
   <link href="<%= BASE_URL %>assets/css/skin/default.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
@@ -93,6 +107,13 @@
 		<!-- Custom Js -->
 		<script src="<%= BASE_URL %>assets/js/custom.js"></script>
 		<script src="<%= BASE_URL %>assets/js/jQuery.style.switcher.js"></script>
+
+		<script>
+			$('#myTab a').click(function (e) {
+				e.preventDefault()
+				$(this).tab('show')
+			})
+		</script>
 		
 		<script>
 			AOS.init();
