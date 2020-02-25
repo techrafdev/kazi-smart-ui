@@ -124,24 +124,24 @@ export default {
 
 			console.log(service_id, location)
 
-			let data = {
-				service_id: service_id,
-				location: location
-			}
+			// let data = {
+			// 	service_id: service_id,
+			// 	location: location
+			// }
 
 			// const customheaders = {
 			// 	'Access-Control-Allow-Origin': '*'
 			// }
 
-			axios.post("http://kazi.localhost/service/search", data, {
-				headers: {
-					'Access-Control-Allow-Origin': '*'
-				}
+			this.$router.push({
+				path: '/service-providers/search/' + service_id + "/" + location
 			})
-			.then((resp) => {
-				console.log(resp)
-			})
-			.catch(error => console.log(error))
+
+			// axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
+			// .then((resp) => {
+			// 	console.log(resp)
+			// })
+			// .catch(error => console.log(error))
 
 		}
 	}
