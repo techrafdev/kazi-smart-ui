@@ -20,12 +20,12 @@
 							<div class="col-md-3 col-sm-3 padd-0">
 								<select id="service" class="wide form-control br-1">
 									<!-- <option data-display="Location">All Country</option> -->
-									<option v-for="service in services" :key="service.id" value="service.id" v-text="service.name"></option>
+									<option v-for="service in services" :key="service.id" :value="service.id" v-text="service.name"></option>
 								</select>
 							</div>
 								
 							<div class="col-md-3 col-sm-3 padd-0">
-								<select id="county" class="wide form-control">
+								<select id="location" class="wide form-control">
 									<option data-display="Category">Show All</option>
 									<option value="1">Web Design</option>
 									<option value="2">Accountant</option>
@@ -101,20 +101,7 @@ export default {
 		return {
 			total_clients: 1001,
 			total_active_service_providers: 2398,
-			services: [
-				// {
-				// 	name: "Mechanic",
-				// 	id: 1
-				// },
-				// {
-				// 	name: "Plumber",
-				// 	id: 2
-				// },
-				// {
-				// 	name: "Electrician",
-				// 	id: 3
-				// }
-			]
+			services: []
 		}
 	},
 	components: {},
@@ -132,10 +119,30 @@ export default {
 		},
 		submit() {
 
-			let service = $("#service").val();
-			let county = $("#county").val();
+			let service_id = $("#service").val();
+			let location = $("#location").val();
 
-			console.log(service, county);
+			console.log(service_id, location)
+
+			let data = {
+				service_id: service_id,
+				location: location
+			}
+
+			// const customheaders = {
+			// 	'Access-Control-Allow-Origin': '*'
+			// }
+
+			axios.post("http://kazi.localhost/service/search", data, {
+				headers: {
+					'Access-Control-Allow-Origin': '*'
+				}
+			})
+			.then((resp) => {
+				console.log(resp)
+			})
+			.catch(error => console.log(error))
+
 		}
 	}
 }
