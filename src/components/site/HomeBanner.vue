@@ -113,7 +113,6 @@ export default {
 			axios.get("http://kazi.localhost/service/all")
 			.then((response) => {
 				this.services = response.data.response.data
-				// console.log(response.data.response.data)
 			})
 			.catch(error => console.log(error))
 		},
@@ -124,24 +123,9 @@ export default {
 
 			console.log(service_id, location)
 
-			// let data = {
-			// 	service_id: service_id,
-			// 	location: location
-			// }
-
-			// const customheaders = {
-			// 	'Access-Control-Allow-Origin': '*'
-			// }
-
 			this.$router.push({
-				path: '/service-providers/search/' + service_id + "/" + location
+				path: '/service-providers/search/'+ service_id + "/" + location
 			})
-
-			// axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
-			// .then((resp) => {
-			// 	console.log(resp)
-			// })
-			// .catch(error => console.log(error))
 
 		}
 	}

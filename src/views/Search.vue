@@ -6,69 +6,75 @@
 
         <Banner />
 
-        <!-- Recent Job -->
-        <div class="tab-pane fade in show active" id="recent" role="tabpanel">
+		<!-- Featured Job -->
+        <div class="tab-pane fade in show active" id="featured" role="tabpanel">
             <div class="row">
-            
-                <!-- Single Job -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="grid-job-widget">
-                    
-                        <span class="job-type full-type">Rating</span>
-                        <div class="job-like">
-                            <label class="toggler toggler-danger">
-                                <input type="checkbox" checked>
-                                <i class="fa fa-heart"></i>
-                            </label>
-                        </div>
-                        
-                        <div class="u-content">
-                            <div class="avatar box-80">
-                                <a href="employer-detail.html">
-                                    <img class="img-responsive" src="assets/img/c-1.png" alt="">
-                                </a>
-                            </div>
-                            <h5><a href="employer-detail.html">Product Redesign</a></h5>
-                            <p class="text-muted">By,  Service Provider Name</p>
-                            <p class="text-muted"> 2 hrs ago </p>
-                        </div>
-                        
-                        <div class="job-type-grid">
-                            <a href="job-detail.html" class="btn job-browse-btn btn-radius br-light">Quick View</a>
-                        </div>
-                        
-                    </div>
-                </div>
+
+                <!-- Single Employee List -->
+            <div v-for="search_result in search_results" :key="search_result.profile_id" class="col-md-4 col-sm-6">
+                <div class="contact-box">
                 
+                    <div class="flexbox mrg-l-10">
+                        <label class="toggler toggler-danger">
+                            <input type="checkbox">
+                            <i class="fa fa-heart"></i>
+                        </label>
+                    </div>
+                
+                    <div class="contact-img">
+                        <img src="assets/img/client-2.jpg" class="img-circle img-responsive" alt="">
+                    </div>
+                    
+                    <div class="contact-caption">
+                        <h4 class="font-16 font-midium" v-text="search_result.full_name"></h4>
+                        <span v-text="search_result.service_name"></span>
+                    </div>
+                    
+                    <div class="contact-footer">
+                        <a href="#" class="col-half"><span class="con-message"><i class="ti-email"></i>View Profile</span></a>
+                        
+                        <a href="resume-detail.html" class="left-br col-half">
+                            <span class="con-profile"><i class="ti-eye"></i>Hire</span>
+                        </a>
+                    </div>
+                    
+                </div>
             </div>
+                
+            </div>	
         </div>
+
 
     </div>
 
 </template>
 
 <script>
+
+import axios from "axios";
+
 import Navigation from "../components/site/Navigation";
 import Banner from "../components/site/signup/Banner";
 export default {
 
     data() {
         return {
-
+            search_results: []
         }
     },
-    created() {
+    mounted() {
 
-        let service_id = this.$router.params.service_id;
-        let location = this.$router.params.location;
+        let service_id = this.$route.params.service_id;
+        let location = this.$route.params.location;
 
-        // axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
-        // .then((resp) => {
-        //     console.log(resp)
-        // })
-        // .catch(error => console.log(error))
+        axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
+        .then((resp) => {
+            this.search_results = resp.data.response;
+            console.log(this.search_results)
+        })
+        .catch(error => console.log(error))
 
-        alert(service_id);
+        // alert(service_id, location);
 
     },
     components: {
