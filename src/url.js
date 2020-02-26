@@ -1,3 +1,3 @@
 export const urlObject = {
-    baseUrl: "http://kazi.localhost/"
+    baseUrl: "http://localhost/kazi-smart"
 } 
