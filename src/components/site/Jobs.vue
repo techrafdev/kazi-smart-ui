@@ -26,12 +26,10 @@
 							<div v-for="recent_job in recent_jobs" :key="recent_job.profile_id" class="col-lg-3 col-md-4 col-sm-6">
 								<div class="grid-job-widget">
 								
-									<span class="job-type full-type">
-										<div class="star-pos"></div>
-										<div class="star-pos"></div>
-										<div class="star-pos"></div>
-										<div class="star-neg"></div>
-										<div class="star-neg"></div>
+									<span v-for="recent_job_rating in recent_jobs_rating" :key="recent_job_rating.id">
+										<span v-if="recent_job_rating.id == recent_job.job_id" class="job-type full-type">
+											<div v-for="item in recent_job_rating.rating" :key="item.id" :class="item.class"></div>
+										</span>
 									</span>
 
 									<div class="job-like">
@@ -125,6 +123,7 @@ export default {
     data() {
 		return {
 			recent_jobs: [],
+			recent_jobs_rating: [],
 			featured_service_providers: [
 				{
 					user_full_name: "Kelvin Rapahel Kingara",
@@ -206,25 +205,51 @@ export default {
 			for (const recent_job of recent_jobs) {
 
 				let current_user_object = {
-					id: recent_job.profile_id
+					id: recent_job.job_id
 				}
 
 				let rating_couter = 0;
-				let db_rating = recent_job.rating > 5 ? 5 : recent_job.rating;
+				let db_rating;
+
+				console.log("Db Rating Before Check", recent_job.rating);
+
+				if(recent_job.rating > 5) {
+					db_rating = 5;
+				} else if(recent_job.rating == null) {
+					db_rating = 0;
+				} else {
+					db_rating = recent_job.rating;
+				}
+
+				console.log("Db Rating", db_rating)
 
 				var rate = [];
 
 				while (db_rating > 0) {
-					rate.push("star-pos");
+					let class_object = {
+						id: Math.random(),
+						class: "star-pos"
+					}
+					rate.push(class_object);
 					db_rating--;
 					rating_couter++;
 				}
 
-				let rate_negative = rating_couter - 5;
+				console.log("Rating Couter :", rating_couter);
 
-				if(rate_negative !== 0) {
+				let rate_negative = 5 - rating_couter;
+
+				console.log("Diff is :", rate_negative);
+
+				if(rate_negative > 0) {
 					while (rate_negative > 0) {
-						rate.push("star-neg");
+
+						let class_object = {
+							id: Math.random(),
+							class: "star-neg"
+						}
+
+					rate.push(class_object);
 						rate_negative--;
 					}
 				}
@@ -234,7 +259,10 @@ export default {
 				
 			}
 
-			console.log(all_rating);
+			this.recent_jobs_rating = all_rating;
+
+			console.log(this.recent_jobs_rating);
+
 		}
 	}
 }
