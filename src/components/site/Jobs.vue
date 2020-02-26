@@ -48,7 +48,7 @@
 										</div>
 										<h5 v-text="recent_job.full_name"></h5>
 										<p class="text-muted" >By, <span v-text="recent_job.full_name"></span> </p>
-										<p class="text-muted"> 2 hrs ago </p>
+										<p class="text-muted"> {{ recent_job.completed | timeDifference }} </p>
 									</div>
 									
 									<div class="job-type-grid">
@@ -184,7 +184,7 @@ export default {
 		
 	},
 	created() {
-		// this.rating();
+		// console.log(this.timeDifference("2020-2-26 11:40:48"))
 	},
     methods: {
 		get_recent_jobs() {
@@ -200,8 +200,6 @@ export default {
 			var all_rating = [];
 			var recent_jobs = this.recent_jobs;
 
-			console.log(this.recent_jobs);
-
 			for (const recent_job of recent_jobs) {
 
 				let current_user_object = {
@@ -211,8 +209,6 @@ export default {
 				let rating_couter = 0;
 				let db_rating;
 
-				console.log("Db Rating Before Check", recent_job.rating);
-
 				if(recent_job.rating > 5) {
 					db_rating = 5;
 				} else if(recent_job.rating == null) {
@@ -220,8 +216,6 @@ export default {
 				} else {
 					db_rating = recent_job.rating;
 				}
-
-				console.log("Db Rating", db_rating)
 
 				var rate = [];
 
@@ -235,11 +229,7 @@ export default {
 					rating_couter++;
 				}
 
-				console.log("Rating Couter :", rating_couter);
-
 				let rate_negative = 5 - rating_couter;
-
-				console.log("Diff is :", rate_negative);
 
 				if(rate_negative > 0) {
 					while (rate_negative > 0) {
@@ -261,8 +251,48 @@ export default {
 
 			this.recent_jobs_rating = all_rating;
 
-			console.log(this.recent_jobs_rating);
+		}		
+	},
+	filters: {
+		timeDifference: function (previous) {
 
+			var current = new Date()
+
+			// var my_date = "2019-04-03 07:59:48";
+			previous = previous.replace(/-/g, "/");
+			var d = new Date(previous);
+
+			var msPerMinute = 60 * 1000;
+			var msPerHour = msPerMinute * 60;
+			var msPerDay = msPerHour * 24;
+			var msPerMonth = msPerDay * 30;
+			var msPerYear = msPerDay * 365;
+
+			var elapsed = current - d;
+
+			if (elapsed < msPerMinute) {
+				return Math.round(elapsed/1000) + ' seconds ago';   
+			}
+
+			else if (elapsed < msPerHour) {
+				return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+			}
+
+			else if (elapsed < msPerDay ) {
+				return Math.round(elapsed/msPerHour ) + ' hours ago';   
+			}
+
+			else if (elapsed < msPerMonth) {
+				return Math.round(elapsed/msPerDay) + ' days ago';   
+			}
+
+			else if (elapsed < msPerYear) {
+				return Math.round(elapsed/msPerMonth) + ' months ago';   
+			}
+
+			else {
+				return Math.round(elapsed/msPerYear ) + ' years ago';   
+			}
 		}
 	}
 }
