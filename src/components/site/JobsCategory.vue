@@ -25,8 +25,8 @@
 								</div>
 
 								<div class="category-detail category-desc-text">
-									<a href="browse-job.html" title=""><h4>Accounting & Finance</h4></a>
-									<p>122 Jobs</p>
+									<router-link to="/" title=""><h4 v-text="service_category.name"></h4></router-link>
+									<!-- <p>122 Jobs</p> -->
 								</div>
 							</div>
 						</div>
@@ -48,49 +48,28 @@
 </template>
 
 <script>
+
+import { urlObject } from "../../url";
+import axios from "axios";
+
 export default {
 	data() {
 		return {
-			service_categories: [
-				{	
-					service_name: "Plumber",
-					id: 2,
-					number_of_service_providers: 200
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				},
-				{
-					service_name: "Mechanic",
-					id: 4,
-					number_of_service_providers: 211
-				}
-			]
+			service_categories: []
 		}
 	},
-	methods: {}
+	methods: {
+		get_service_category() {
+			axios.get(`${urlObject.baseUrl}/service/all`)
+			.then((resp) => {
+				this.service_categories = resp.data.response
+			})
+			.catch(error => console.log(error))
+		}
+	},
+	created() {
+		this.get_service_category()
+	}
 }
 </script>
 

@@ -94,27 +94,42 @@
 
 import $ from "jquery";
 import axios from "axios";
+import { urlObject } from "../../url";
 
 export default {
     name: "banner",
     data() {
 		return {
-			total_clients: 1001,
-			total_active_service_providers: 2398,
+			total_clients: 0,
+			total_active_service_providers: 0,
 			services: []
 		}
 	},
 	components: {},
 	mounted() {
 		this.get_all_services();
+		this.get_active_clients();
+		this.get_active_providers() 
 	},
     methods: {
 		get_all_services() {
 			axios.get("http://kazi.localhost/service/all")
 			.then((response) => {
-				this.services = response.data.response.data
+				this.services = response.data.response
 			})
 			.catch(error => console.log(error))
+		},
+		get_active_clients() {
+			axios.get(`${urlObject.baseUrl}/user/active/users`)
+			.then( (resp) => {
+				this.total_clients = resp.data.response.active_users;
+			} )
+		},
+		get_active_providers() {
+			axios.get(`${urlObject.baseUrl}/user/active/providers`)
+			.then( (resp) => {
+				this.total_active_service_providers = resp.data.response.active_providers;
+			} )
 		},
 		submit() {
 

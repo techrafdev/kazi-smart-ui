@@ -31,11 +31,11 @@
                     </div>
                     
                     <div class="contact-footer">
-                        <a href="#" class="col-half"><span class="con-message"><i class="ti-email"></i>View Profile</span></a>
+                        <router-link to="#" class="col-half"><span class="con-message"><i class="ti-email"></i>View Profile</span></router-link>
                         
-                        <a href="resume-detail.html" class="left-br col-half">
+                        <router-link to="#" class="left-br col-half">
                             <span class="con-profile"><i class="ti-eye"></i>Hire</span>
-                        </a>
+                        </router-link>
                     </div>
                     
                 </div>
@@ -70,12 +70,8 @@ export default {
         axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
         .then((resp) => {
             this.search_results = resp.data.response;
-            console.log(this.search_results)
         })
         .catch(error => console.log(error))
-
-        // alert(service_id, location);
-
     },
     components: {
         Navigation,
