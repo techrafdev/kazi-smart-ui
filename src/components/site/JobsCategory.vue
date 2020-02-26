@@ -26,7 +26,7 @@
 
 								<div class="category-detail category-desc-text">
 									<router-link to="/" title=""><h4 v-text="service_category.name"></h4></router-link>
-									<!-- <p>122 Jobs</p> -->
+									<p>{{ service_category.count }} Service Providers</p>
 								</div>
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 					
 					<div class="col-md-12 mrg-top-40">
 						<div class="text-center">
-							<a href="#" class="btn theme-btn btn-m">Browse All Category</a>
+							<a href="javascript:void(0)" class="btn theme-btn btn-m">Browse All Category</a>
 						</div>
 					</div>
 					
@@ -60,7 +60,7 @@ export default {
 	},
 	methods: {
 		get_service_category() {
-			axios.get(`${urlObject.baseUrl}/service/all`)
+			axios.get(`${urlObject.baseUrl}/service/category/providers`)
 			.then((resp) => {
 				this.service_categories = resp.data.response
 			})

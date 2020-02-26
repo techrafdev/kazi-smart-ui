@@ -113,7 +113,7 @@ export default {
 	},
     methods: {
 		get_all_services() {
-			axios.get("http://kazi.localhost/service/all")
+			axios.get(`${urlObject.baseUrl}/service/all`)
 			.then((response) => {
 				this.services = response.data.response
 			})
