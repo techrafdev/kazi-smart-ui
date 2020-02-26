@@ -12,6 +12,7 @@
         </li>
       </ul>
 
+<<<<<<< HEAD
       <div class="tab-content">
         <!-- Recent Job -->
         <div class="tab-pane fade in show active" id="recent" role="tabpanel">
@@ -30,6 +31,39 @@
                   <div class="star-neg"></div>
                   <div class="star-neg"></div>
                 </span>
+=======
+    <!-- ================= Job start ========================= -->
+		<section>
+			<div class="container">
+			
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs nav-advance theme-bg" role="tablist">
+					<li class="nav-item active">
+						<a class="nav-link" data-toggle="tab" href="#recent" role="tab">
+						Recent Jobs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#featured" role="tab">
+						Featured Providers</a>
+					</li>
+				</ul>
+				
+				<div class="tab-content">
+					
+					<!-- Recent Job -->
+					<div class="tab-pane fade in show active" id="recent" role="tabpanel">
+						<div class="row">
+						
+							<!-- Single Job -->
+							<div v-for="recent_job in recent_jobs" :key="recent_job.profile_id" class="col-lg-3 col-md-4 col-sm-6">
+								<div class="grid-job-widget">
+								
+									<span v-for="recent_job_rating in recent_jobs_rating" :key="recent_job_rating.id">
+										<span v-if="recent_job_rating.id == recent_job.job_id" class="job-type full-type">
+											<div v-for="item in recent_job_rating.rating" :key="item.id" :class="item.class"></div>
+										</span>
+									</span>
+>>>>>>> 229ec844137dddf82a1d57442773a64222c4640a
 
                 <div class="job-like">
                   <label class="toggler toggler-danger">
@@ -148,6 +182,7 @@ import axios from "axios";
 import { urlObject } from "../../url";
 
 export default {
+<<<<<<< HEAD
   name: "jobs",
   data() {
     return {
@@ -173,6 +208,71 @@ export default {
           this.rating();
         })
         .catch(error => console.log(error));
+=======
+    name: "jobs",
+    data() {
+		return {
+			recent_jobs: [],
+			recent_jobs_rating: [],
+			featured_service_providers: [
+				{
+					user_full_name: "Kelvin Rapahel Kingara",
+					profile_id: 2,
+					user_profile_image: "url",
+					msisdn: "07891*******",
+					user_location: "Location",
+					user_service_category: "Mechanic",
+					number_of_jobs_done: 30,
+					rating: 5
+				},
+				{
+					user_full_name: "Kelvin Rapahel Kingara",
+					profile_id: 3,
+					user_profile_image: "url",
+					msisdn: "07891*******",
+					user_location: "Location",
+					user_service_category: "Mechanic",
+					number_of_jobs_done: 30,
+					rating: 5
+				},
+				{
+					user_full_name: "Kelvin Rapahel Kingara",
+					profile_id: 4,
+					user_profile_image: "url",
+					msisdn: "07891*******",
+					user_location: "Location",
+					user_service_category: "Mechanic",
+					number_of_jobs_done: 30,
+					rating: 5
+				},
+				{
+					user_full_name: "Kelvin Rapahel Kingara",
+					profile_id: 5,
+					user_profile_image: "url",
+					msisdn: "07891*******",
+					user_location: "Location",
+					user_service_category: "Mechanic",
+					number_of_jobs_done: 30,
+					rating: 5
+				},
+				{
+					user_full_name: "Kelvin Rapahel Kingara",
+					profile_id: 6,
+					user_profile_image: "url",
+					msisdn: "07891*******",
+					user_location: "Location",
+					user_service_category: "Mechanic",
+					number_of_jobs_done: 30,
+					rating: 5
+				}
+			]
+		}
+	},
+	components: {},
+	mounted() {
+		this.get_recent_jobs();
+		
+>>>>>>> 229ec844137dddf82a1d57442773a64222c4640a
 	},
 	round(value){
 		return value.toFixed(1)
@@ -188,10 +288,31 @@ export default {
           id: recent_job.profile_id
         };
 
+<<<<<<< HEAD
         let rating_couter = 0;
         let db_rating = recent_job.rating > 5 ? 5 : recent_job.rating;
 
         var rate = [];
+=======
+				let current_user_object = {
+					id: recent_job.job_id
+				}
+
+				let rating_couter = 0;
+				let db_rating;
+
+				console.log("Db Rating Before Check", recent_job.rating);
+
+				if(recent_job.rating > 5) {
+					db_rating = 5;
+				} else if(recent_job.rating == null) {
+					db_rating = 0;
+				} else {
+					db_rating = recent_job.rating;
+				}
+
+				console.log("Db Rating", db_rating)
+>>>>>>> 229ec844137dddf82a1d57442773a64222c4640a
 
         while (db_rating > 0) {
           rate.push("star-pos");
@@ -199,6 +320,7 @@ export default {
           rating_couter++;
         }
 
+<<<<<<< HEAD
         let rate_negative = rating_couter - 5;
 
         if (rate_negative !== 0) {
@@ -225,6 +347,49 @@ export default {
     }
   }
 };
+=======
+				while (db_rating > 0) {
+					let class_object = {
+						id: Math.random(),
+						class: "star-pos"
+					}
+					rate.push(class_object);
+					db_rating--;
+					rating_couter++;
+				}
+
+				console.log("Rating Couter :", rating_couter);
+
+				let rate_negative = 5 - rating_couter;
+
+				console.log("Diff is :", rate_negative);
+
+				if(rate_negative > 0) {
+					while (rate_negative > 0) {
+
+						let class_object = {
+							id: Math.random(),
+							class: "star-neg"
+						}
+
+					rate.push(class_object);
+						rate_negative--;
+					}
+				}
+
+				current_user_object.rating = rate;
+				all_rating.push(current_user_object);
+				
+			}
+
+			this.recent_jobs_rating = all_rating;
+
+			console.log(this.recent_jobs_rating);
+
+		}
+	}
+}
+>>>>>>> 229ec844137dddf82a1d57442773a64222c4640a
 </script>
 
 <style>
