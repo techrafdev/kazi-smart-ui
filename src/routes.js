@@ -1,7 +1,7 @@
 import Site from "./views/Site";
 import SignUp from "./views/SignUp";
-// import SignIn from "./views/SignIn";
 import Search from "./views/Search";
+import ServiceProviderProfile from "./views/ServiceProviderProfile";
 
 const routes = [
     {
@@ -16,9 +16,13 @@ const routes = [
     },
     {
         path: "/service-providers/search/:service_id?/:location?",
-        // path: "/service-providers/search",
         component: Search,
         name: "search"
+    },
+    {
+        path: "/profile/:id",
+        component: ServiceProviderProfile,
+        name: "profile"
     }
 ];
 

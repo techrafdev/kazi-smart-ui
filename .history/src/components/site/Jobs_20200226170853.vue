@@ -61,7 +61,7 @@
 					</div>
 				</div>
 
-				<!-- Featured Service Providers -->
+				<!-- Featured Job -->
 				<div class="tab-pane fade" id="featured" role="tabpanel">
 
 					<div class="row">
@@ -104,8 +104,7 @@
 								</div>
 
 								<div class="contact-footer">
-
-									<router-link :to=" service_provider.profile_id | profileUrl " class="col-half">
+									<router-link to="/profile/2" class="col-half">
 										<span class="con-message">
 										<i class="ti-email"></i> View Profile
 										</span>
@@ -116,7 +115,6 @@
 										<i class="ti-eye"></i> Hire
 										</span>
 									</a>
-
 								</div>
 							</div>
 						</div>
@@ -233,11 +231,6 @@ export default {
 			}
 		},				
 		filters: {
-			profileUrl(id) {
-
-				return `/profile/${id}`
-
-			},
 			roundIt(val) {
 				return Math.round(val)
 			},

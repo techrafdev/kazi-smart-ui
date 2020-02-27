@@ -129,8 +129,6 @@
 <script>
 
 import $ from 'jquery';
-import axios from "axios";
-import { urlObject } from "../../url"
 
 export default {
     name: "SignIn",
@@ -211,17 +209,6 @@ export default {
 				this.form.loading = true;
 
 				console.log(this.form)
-
-				let auth_data = {
-					password: this.form.password,
-					msisdn: this.form.msisdn
-				}
-
-				axios.post(`${urlObject.baseUrl}/user/login`, auth_data)
-				.then( (resp) => {
-					console.log(resp)
-				} ).catch(err => console.log(err))
-
 			}
 			
 		}

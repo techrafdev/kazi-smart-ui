@@ -92,7 +92,7 @@ export default {
 
 		home() {
 
-			this.$router.push('/')
+			this.$route.push({ path: '/' })
 
 		}
 	}

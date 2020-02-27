@@ -228,6 +228,7 @@ export default {
 			.get(`${urlObject.baseUrl}/service/featured`)
 			.then(resp => {
 				this.featured_services = resp.data.response;
+				console.log(this.featured_services);
 				})
 			.catch(error => console.log(error));
 			}

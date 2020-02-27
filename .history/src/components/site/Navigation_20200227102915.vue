@@ -23,7 +23,7 @@
 					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
 					
 						<li class="dropdown">
-							<a href="javascript:void(0)" @click="home()" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+							<router-link to="/" class="dropdown-toggle" data-toggle="dropdown">Home</router-link>
 						</li>
 					
 						<li class="dropdown">
@@ -88,11 +88,6 @@ export default {
 			});
 
 			modal.open();
-		},
-
-		home() {
-
-			this.$router.push('/')
 
 		}
 	}

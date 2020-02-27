@@ -105,7 +105,7 @@
 
 								<div class="contact-footer">
 
-									<router-link :to=" service_provider.profile_id | profileUrl " class="col-half">
+									<router-link :to=" 1 | profileUrl " class="col-half">
 										<span class="con-message">
 										<i class="ti-email"></i> View Profile
 										</span>
@@ -228,6 +228,7 @@ export default {
 			.get(`${urlObject.baseUrl}/service/featured`)
 			.then(resp => {
 				this.featured_services = resp.data.response;
+				console.log(this.featured_services);
 				})
 			.catch(error => console.log(error));
 			}

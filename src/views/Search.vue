@@ -45,6 +45,9 @@
         </div>
 
 
+        <Footer />
+
+
     </div>
 
 </template>
@@ -52,9 +55,11 @@
 <script>
 
 import axios from "axios";
+import { urlObject } from "../url";
 
 import Navigation from "../components/site/Navigation";
 import Banner from "../components/site/signup/Banner";
+import Footer from "../components/site/Footer";
 export default {
 
     data() {
@@ -67,7 +72,7 @@ export default {
         let service_id = this.$route.params.service_id;
         let location = this.$route.params.location;
 
-        axios.get("http://kazi.localhost/service/search/" + service_id + "/" + location)
+        axios.get(`${urlObject.baseUrl}/service/search/${service_id}/${location}`)
         .then((resp) => {
             this.search_results = resp.data.response;
         })
@@ -75,7 +80,8 @@ export default {
     },
     components: {
         Navigation,
-        Banner
+        Banner,
+        Footer
     }
 
 }
